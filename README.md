@@ -21,9 +21,9 @@ It also allows selecting the number of rows (from 10 to 3000) to test performanc
 
 ## Important info
 >[!NOTE]
->In the process, I noticed that there is also a difference in the startup method between debug and release modes. Therefore, for the sake of purity, the demo is available at the link
+>In the process, I noticed that there is also a difference in the startup method between debug and release modes. Therefore, for the sake of purity, the demo is available at the [link](https://flutter-table-demo.vercel.app)
 
-- How to deploy flutter web app to [Vercel](https://vercel.com/home) -> [Guide link](https://medium.com/@ekrajghimire/deploy-flutter-web-app-to-vercel-591aa3cc073a)
+- How to deploy flutter web app to [Vercel](https://vercel.com/home) ➡️ [Guide link](https://medium.com/@ekrajghimire/deploy-flutter-web-app-to-vercel-591aa3cc073a)
 
     Build command
     ```
