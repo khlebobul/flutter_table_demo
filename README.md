@@ -19,23 +19,26 @@ It also allows selecting the number of rows (from 10 to 3000) to test performanc
 - [Flutter DataTable](https://api.flutter.dev/flutter/material/DataTable-class.html)
 - [DataTable2](https://pub.dev/packages/data_table_2)
 
-## Installation
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/your-repo/flutter-table-demo.git
-   ```
-2. Navigate to the project folder:
-   ```sh
-   cd flutter-table-demo
-   ```
-3. Install dependencies:
-   ```sh
-   flutter pub get
-   ```
-4. Run the application:
-   ```sh
-   flutter run
-   ```
+## Important info
+>[!NOTE]
+>In the process, I noticed that there is also a difference in the startup method between debug and release modes. Therefore, for the sake of purity, the demo is available at the link
+
+- How to deploy flutter web app to [Vercel](https://vercel.com/home) -> [Guide link](https://medium.com/@ekrajghimire/deploy-flutter-web-app-to-vercel-591aa3cc073a)
+
+    Build command
+    ```
+    flutter/bin/flutter build web --release
+    ```
+    
+    Output directory
+    ```
+    build/web
+    ```
+
+    Install command
+    ```
+    if cd flutter; then git pull && cd .. ; else git clone https://github.com/flutter/flutter.git; fi && ls && flutter/bin/flutter doctor && flutter/bin/flutter clean && flutter/bin/flutter config --enable-web
+    ```
 
 ## Usage
 - Select the number of rows in the `DropdownButton`.
