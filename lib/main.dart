@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:data_table_2/data_table_2.dart';
+import 'package:two_dimensional_scrollables/two_dimensional_scrollables.dart';
 
 void main() {
   runApp(MyApp());
@@ -99,15 +100,83 @@ class TableDemoScreenState extends State<TableDemoScreen> {
   Widget _buildTable(List<Map<String, String>> data) {
     switch (_tableType) {
       case 'Two Dimensional Scrollables':
-        return SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: DataTable(
-              columns: _buildColumns(),
-              rows: _buildRows(data),
-            ),
-          ),
+        final columns = ['ID', 'Name', 'Value'];
+
+        return TableView.builder(
+          columnCount: columns.length,
+          rowCount: data.length,
+          pinnedColumnCount: 1,
+          pinnedRowCount: 1,
+          columnBuilder: (int columnIndex) {
+            return TableSpan(
+              extent: const FixedTableSpanExtent(120),
+              backgroundDecoration: const TableSpanDecoration(
+                color: Colors.grey,
+                border: TableSpanBorder(
+                  trailing: BorderSide(color: Colors.black12),
+                ),
+              ),
+              foregroundDecoration: const TableSpanDecoration(
+                border: TableSpanBorder(
+                  trailing: BorderSide(color: Colors.black12),
+                ),
+              ),
+            );
+          },
+          rowBuilder: (int rowIndex) {
+            return TableSpan(
+              extent: const FixedTableSpanExtent(50),
+              backgroundDecoration: rowIndex % 2 == 0
+                  ? null
+                  : const TableSpanDecoration(
+                      color: Color(0xFFf5f5f5),
+                    ),
+              foregroundDecoration: const TableSpanDecoration(
+                border: TableSpanBorder(
+                  trailing: BorderSide(color: Colors.black12),
+                ),
+              ),
+            );
+          },
+          cellBuilder: (context, vicinity) {
+            if (vicinity.row == 0) {
+              return TableViewCell(
+                child: Center(
+                  child: Text(
+                    columns[vicinity.column],
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              );
+            } else {
+              final rowData = data[vicinity.row - 1];
+              String cellValue = '';
+
+              switch (vicinity.column) {
+                case 0:
+                  cellValue = rowData['ID'] ?? '';
+                  break;
+                case 1:
+                  cellValue = rowData['Name'] ?? '';
+                  break;
+                case 2:
+                  cellValue = rowData['Value'] ?? '';
+                  break;
+              }
+
+              return TableViewCell(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Align(
+                    alignment: vicinity.column == 2
+                        ? Alignment.centerRight
+                        : Alignment.centerLeft,
+                    child: Text(cellValue),
+                  ),
+                ),
+              );
+            }
+          },
         );
       case 'DataTable2':
         return DataTable2(
